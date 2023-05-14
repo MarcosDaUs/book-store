@@ -1,12 +1,13 @@
 import React from "react";
 import Link from "next/link";
 import { Card } from "react-bootstrap";
+import { Book } from "../types/books.type";
 
-type BookProps = {
-  book: any;
+type BookCardProps = {
+  book: Book;
 };
 
-const Book = ({ book }: BookProps) => {
+const BookCard = ({ book }: BookCardProps) => {
   return (
     <Card className="my-3 p-3 rounded">
       <Link href={`/book/${book._id}`}>
@@ -26,4 +27,4 @@ const Book = ({ book }: BookProps) => {
   );
 };
 
-export default Book;
+export default BookCard;
