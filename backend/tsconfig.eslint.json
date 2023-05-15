@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": [".eslintrc.js", "server.ts", "createBooksMocks.ts", "src"]
+}
