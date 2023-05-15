@@ -7,39 +7,47 @@ export const getAllBooks = (
   res: Response,
   next: NextFunction
 ): void => {
-  Book.find().then(
-    (allBooks) => {
-      res.json({
-        books: allBooks.map((book) => book.toObject({ getters: true })),
-      });
-    },
-    () => {
-      return next(
-        new HttpError('Fetching books failed, please try again later.', 500)
-      );
-    }
-  );
+  Book.scan()
+    .all()
+    .exec()
+    .then(
+      (allBooks) => {
+        res.json({
+          books: allBooks,
+        });
+      },
+      () => {
+        return next(
+          new HttpError('Fetching books failed, please try again later.', 500)
+        );
+      }
+    );
 };
 
 export const getBookById = (
-  req: Request<{ id: string }>,
+  req: Request<{ bookId: string }>,
   res: Response,
   next: NextFunction
 ): void => {
-  const bookId: string = req.params.id;
-  Book.findById(bookId).then(
-    (book) => {
-      if (book == null) {
+  const bookId: string = req.params.bookId;
+  Book.scan('bookId')
+    .eq(bookId)
+    .exec()
+    .then(
+      (book) => {
+        if (book == null) {
+          return next(
+            new HttpError('Could not find book for the provided id.', 404)
+          );
+        }
+        res.json({
+          book: Array.isArray(book) && book.count === 1 ? book[0] : book,
+        });
+      },
+      () => {
         return next(
-          new HttpError('Could not find book for the provided id.', 404)
+          new HttpError('Something went wrong, could not find a book.', 500)
         );
       }
-      res.json({ book: book.toObject({ getters: true }) });
-    },
-    () => {
-      return next(
-        new HttpError('Something went wrong, could not find a book.', 500)
-      );
-    }
-  );
+    );
 };

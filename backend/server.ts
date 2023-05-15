@@ -1,4 +1,5 @@
 import * as dotenv from 'dotenv';
+dotenv.config();
 import express, {
   Express,
   Request,
@@ -12,7 +13,6 @@ import colors from 'colors';
 import books from './src/routes/books';
 import HttpError from './src/models/http-error';
 import connectDB from './src/config/db';
-dotenv.config();
 
 const app: Express = express();
 const port: number = Number(process.env.PORT) ?? 5000;
@@ -60,9 +60,7 @@ connectDB()
     });
   })
   .catch((error) => {
-    console.log(
-      colors.red.bold(`Error to conect to MongoDB: ${error.message}`)
-    );
+    console.log(colors.red.bold(`Error to conect to DB: ${error.message}`));
     process.exit(1);
   });
 

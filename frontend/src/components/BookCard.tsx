@@ -10,12 +10,12 @@ type BookCardProps = {
 const BookCard = ({ book }: BookCardProps) => {
   return (
     <Card className="my-3 p-3 rounded">
-      <Link href={`/book/${book._id}`}>
+      <Link href={`/book/${book.bookId}`}>
         <Card.Img src={book.image} variant="top" />
       </Link>
 
       <Card.Body>
-        <Link href={`/book/${book._id}`}>
+        <Link href={`/book/${book.bookId}`}>
           <Card.Title as="div">
             <strong>{book.name}</strong>
           </Card.Title>

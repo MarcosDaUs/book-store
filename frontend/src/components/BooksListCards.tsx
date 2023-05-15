@@ -12,7 +12,7 @@ const BooksListCards = ({ books }: BooksProps) => {
   return (
     <Row>
       {books.map((book) => (
-        <Col key={book._id} sm={12} md={6} lg={4} xl={3}>
+        <Col key={book.bookId} sm={12} md={6} lg={4} xl={3}>
           <BookCard book={book} />
         </Col>
       ))}

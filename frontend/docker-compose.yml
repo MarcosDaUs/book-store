@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  bikes-network-frontend:
+    env_file: ./.env
+    restart: unless-stopped
+    build:
+      context: .
+      args:
+        - BOOK_STORE_API_URL=$BOOK_STORE_API_URL
+    ports:
+      - $FRONTEND_LOCAL_PORT:$FRONTEND_DOCKER_PORT

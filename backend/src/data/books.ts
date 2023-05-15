@@ -2,6 +2,7 @@ import { BookInterface } from '../models/book';
 
 const books: BookInterface[] = [
   {
+    bookId: 'id1Test',
     name: 'Leonardo Davinci: La Biografia',
     image: '/images/img-ld-labiografia.jpeg',
     author: 'Walter Issacson',
@@ -11,6 +12,7 @@ const books: BookInterface[] = [
     price: '$50.000.oo',
   },
   {
+    bookId: 'id2Test',
     name: 'Inteligencia Genial',
     image: '/images/img-ld-inteligenciagenial.jpeg',
     author: 'Michael Gelb',
